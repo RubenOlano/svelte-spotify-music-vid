@@ -3,9 +3,14 @@
   import { onMount } from 'svelte';
   import Player from '../components/player.svelte';
   import { started, vidQueue } from '../stores/vidStore';
+
   let ws: WebSocket;
-  let playing = $started;
+  let playing: boolean;
   let code_link = '';
+
+  started.subscribe((value) => {
+    playing = value;
+  });
 
   onMount(() => {
     ws = new WebSocket('ws://localhost:8080/ws');
@@ -15,6 +20,7 @@
   });
 
   const handleMessage = (message: MessageEvent) => {
+    console.log(typeof message.data);
     const data = message.data;
     if (!data) return;
     if (isVid(data)) vidQueue.update((queue) => [...queue, data]);

@@ -18,11 +18,13 @@
 
 {#if !submitted}
   <div class="w-60 flex justify-center align-middle">
-    <div
-      class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-200 ease-in-out m-2"
-    >
-      <a target="_blank" rel="noreferrer" href={codeLink}>Authorize</a>
-    </div>
+    <a target="_blank" rel="noreferrer" href={codeLink}>
+      <div
+        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-200 ease-in-out m-2"
+      >
+        Authorize
+      </div>
+    </a>
   </div>
 
   <form on:submit|preventDefault={handleSubmit}>
